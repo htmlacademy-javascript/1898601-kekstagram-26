@@ -1,6 +1,5 @@
 import {
-  getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength
+  getRandomFromArray, getRandomPositiveInteger,
 } from './util.js';
 
 const COMMENT_MESSAGES = [
@@ -67,7 +66,7 @@ const getCommentAvatar = function (begin, end) {
 
 const getCommentMessage = function () {
   const commentMessage = getRandomFromArray(COMMENT_MESSAGES);
-  return checkStringLength(commentMessage, MAX_STRING_LENGTH) ? commentMessage : undefined;
+  return commentMessage;
 };
 
 
@@ -82,7 +81,7 @@ const createComment = function () {
 };
 
 
-const createPhoto = function (element, index) {
+const createPhoto = function (index) {
   const photo = {
     id: index + 1,
     url: getPictureUrl(index + 1),
