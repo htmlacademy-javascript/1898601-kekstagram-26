@@ -6,5 +6,5 @@ import {
 
 getRandomPositiveInteger(1, 5);
 checkStringLength('Hello my name is...', MAX_STRING_LENGTH);
-const photos = Array.from({ length: PHOTOS_SIZE }, createPhoto);
+const photos = Array.from({ length: PHOTOS_SIZE }, (elem, index) => createPhoto(index));
 returnArray(photos);
