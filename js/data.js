@@ -23,16 +23,26 @@ const PICTURE_DESCRIPTIONS = [
   Street credibility и не надо платин, (Ski,ski)`
 ];
 
+const LIKES_SETTINGS = {
+  MIN_COUNT: 15,
+  MAX_COUNT: 200,
+};
+
+const COMMENT_SETTINGS = {
+  MIN_COUNT: 0,
+  MAX_COUNT: 5,
+  MIN_ID: 0,
+  MAX_ID: 1000,
+};
+
+const AVATAR_SETTINGS = {
+  MIN_VALUE: 1,
+  MAX_VALUE: 6,
+};
+
+
 const PHOTOS_SIZE = 25;
 const MAX_STRING_LENGTH = 140;
-const MIN_LIKES = 15;
-const MAX_LIKES = 200;
-const MIN_COMMENTS = 0;
-const MAX_COMMENTS = 5;
-const MIN_AVATAR_VALUE = 1;
-const MAX_AVATAR_VALUE = 6;
-const MIN_COMMENT_ID = 0;
-const MAX_COMMENT_ID = 1000;
 
 
 const getPictureUrl = function (i) {
@@ -42,12 +52,12 @@ const getPictureUrl = function (i) {
 
 const createRandomIdFromRangeGenerator = function (min, max) {
   const previousValues = [];
-  return function(){
-    if(previousValues.length === max - min + 1){
+  return function () {
+    if (previousValues.length === max - min + 1) {
       return null;
     }
     let randomId = getRandomPositiveInteger(min, max);
-    while(previousValues.includes(randomId)){
+    while (previousValues.includes(randomId)) {
       randomId = getRandomPositiveInteger(min, max);
     }
     previousValues.push(randomId);
@@ -56,7 +66,7 @@ const createRandomIdFromRangeGenerator = function (min, max) {
 };
 
 
-const generateCommentId = createRandomIdFromRangeGenerator(MIN_COMMENT_ID, MAX_COMMENT_ID);
+const generateCommentId = createRandomIdFromRangeGenerator(COMMENT_SETTINGS.MIN_ID, COMMENT_SETTINGS.MAX_ID);
 
 
 const getCommentAvatar = function (begin, end) {
@@ -73,7 +83,7 @@ const getCommentMessage = function () {
 const createComment = function () {
   const comment = {
     id: generateCommentId(),
-    avatar: getCommentAvatar(MIN_AVATAR_VALUE, MAX_AVATAR_VALUE),
+    avatar: getCommentAvatar(AVATAR_SETTINGS.MIN_VALUE, AVATAR_SETTINGS.MAX_VALUE),
     message: getCommentMessage(),
     name: getRandomFromArray(COMMENT_NAMES),
   };
@@ -86,8 +96,9 @@ const createPhoto = function (index) {
     id: index + 1,
     url: getPictureUrl(index + 1),
     description: getRandomFromArray(PICTURE_DESCRIPTIONS),
-    likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
-    comments: Array.from({ length: getRandomPositiveInteger(MIN_COMMENTS, MAX_COMMENTS) }, createComment),
+    likes: getRandomPositiveInteger(LIKES_SETTINGS.MIN_COUNT, LIKES_SETTINGS.MAX_COUNT),
+    comments: Array.from({ length: getRandomPositiveInteger(COMMENT_SETTINGS.MIN_COUNT, COMMENT_SETTINGS.MAX_COUNT) }
+      , createComment),
   };
   return photo;
 };
