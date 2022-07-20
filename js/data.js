@@ -40,7 +40,6 @@ const AVATAR_SETTINGS = {
   MAX_VALUE: 6,
 };
 
-
 const PHOTOS_SIZE = 25;
 const MAX_STRING_LENGTH = 140;
 

@@ -15,12 +15,7 @@ const getRandomFromArray = function (array) {
 };
 
 
-const returnArray = function (array) {
-  return array;
-};
-
-
 export {
   getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength, returnArray
+  , checkStringLength,
 };
