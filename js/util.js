@@ -15,7 +15,17 @@ const getRandomFromArray = function (array) {
 };
 
 
+const makeElement = function(elementType, elementClass, elementText){
+  const element = document.createElement(elementType);
+  element.classList.add(elementClass);
+  if(elementText){
+    element.textContent = elementText;
+  }
+  return element;
+};
+
+
 export {
   getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength,
+  , checkStringLength, makeElement,
 };
