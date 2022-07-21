@@ -15,16 +15,6 @@ const getRandomFromArray = function (array) {
 };
 
 
-const makeElement = function (elementType, elementClass, elementText) {
-  const element = document.createElement(elementType);
-  element.classList.add(elementClass);
-  if (elementText) {
-    element.textContent = elementText;
-  }
-  return element;
-};
-
-
 const appendItemsToList = function (elements, elementsList, createListItem) {
   const listItemsFragment = document.createDocumentFragment();
   elements.forEach((element) => {
@@ -37,5 +27,5 @@ const appendItemsToList = function (elements, elementsList, createListItem) {
 
 export {
   getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength, makeElement, appendItemsToList,
+  , checkStringLength, appendItemsToList,
 };

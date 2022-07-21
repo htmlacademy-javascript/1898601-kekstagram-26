@@ -1,22 +1,15 @@
-import { makeElement } from './util.js';
 import { appendItemsToList } from './util.js';
 const bigPictureElement = document.querySelector('.big-picture');
 const commentsList = bigPictureElement.querySelector('.social__comments');
+const commentsListItem = commentsList.querySelector('.social__comment');
 
 
 const makeCommentsListItem = function ({ avatar, name, message }) {
-  const listItem = makeElement('li', 'social__comment');
-
-  const listItemImage = makeElement('img', 'social__picture');
+  const listItem = commentsListItem.cloneNode(true);
+  const listItemImage = listItem.querySelector('.social__picture');
   listItemImage.src = avatar;
   listItemImage.alt = name;
-  listItemImage.width = '35';
-  listItemImage.height = '35';
-  listItem.append(listItemImage);
-
-  const listItemParagraph = makeElement('p', 'social__text', message);
-  listItem.append(listItemParagraph);
-
+  listItem.querySelector('.social__text').textContent = message;
   return listItem;
 };
 
