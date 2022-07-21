@@ -1,21 +1,24 @@
 import { drawBigPicture } from './draw-big-pictures.js';
+import { appendItemsToList } from './util.js';
 
-const pictureItemTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const picturesList = document.querySelector('.pictures');
+const thumbnailItemTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const thumbnailsList = document.querySelector('.pictures');
 
-const drawPictures = function (pictures) {
-  const picturesListFragment = document.createDocumentFragment();
-  pictures.forEach( (picture) => {
-    const picturesListItem = pictureItemTemplate.cloneNode(true);
-    picturesListItem.querySelector('.picture__img').src = picture.url;
-    picturesListItem.querySelector('.picture__likes').textContent = picture.likes;
-    picturesListItem.querySelector('.picture__comments').textContent = picture.comments.length;
-    picturesListItem.addEventListener('click', () => {
-      drawBigPicture(picture);
-    });
-    picturesListFragment.append(picturesListItem);
+
+const makeThumbnailsListItem = function (picture) {
+  const listItem = thumbnailItemTemplate.cloneNode(true);
+  listItem.querySelector('.picture__img').src = picture.url;
+  listItem.querySelector('.picture__likes').textContent = picture.likes;
+  listItem.querySelector('.picture__comments').textContent = picture.comments.length;
+  listItem.addEventListener('click', () => {
+    drawBigPicture(picture);
   });
-  picturesList.append(picturesListFragment);
+  return listItem;
 };
 
-export { drawPictures };
+
+const drawThumbnails = function (thumbnails) {
+  appendItemsToList(thumbnails, thumbnailsList, makeThumbnailsListItem);
+};
+
+export { drawThumbnails };

@@ -15,17 +15,27 @@ const getRandomFromArray = function (array) {
 };
 
 
-const makeElement = function(elementType, elementClass, elementText){
+const makeElement = function (elementType, elementClass, elementText) {
   const element = document.createElement(elementType);
   element.classList.add(elementClass);
-  if(elementText){
+  if (elementText) {
     element.textContent = elementText;
   }
   return element;
 };
 
 
+const appendItemsToList = function (elements, elementsList, createListItem) {
+  const listItemsFragment = document.createDocumentFragment();
+  elements.forEach((element) => {
+    const listItem = createListItem(element);
+    listItemsFragment.append(listItem);
+  });
+  elementsList.append(listItemsFragment);
+};
+
+
 export {
   getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength, makeElement,
+  , checkStringLength, makeElement, appendItemsToList,
 };
