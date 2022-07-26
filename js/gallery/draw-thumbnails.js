@@ -1,5 +1,5 @@
 import { drawBigPicture } from './draw-big-pictures.js';
-import { appendItemsToList } from './util.js';
+import { appendItemsToList } from '../util.js';
 
 const thumbnailItemTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailsList = document.querySelector('.pictures');

@@ -1,4 +1,4 @@
-import { appendItemsToList } from './util.js';
+import { appendItemsToList } from '../util.js';
 const bigPictureElement = document.querySelector('.big-picture');
 const commentsList = bigPictureElement.querySelector('.social__comments');
 const commentsListItem = commentsList.querySelector('.social__comment');

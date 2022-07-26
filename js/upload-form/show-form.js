@@ -10,6 +10,7 @@ const closeUserModal = function(){
   imageOverlay.classList.add('hidden');
   document.removeEventListener('keydown', onModalEscKeydown);
   imageOverlayCancel.removeEventListener('click', closeUserModal);
+  imageField.value = '';
 };
 
 
@@ -29,9 +30,16 @@ function onModalEscKeydown(evt){
 }
 
 
-imageField.addEventListener('change', () => {
-  // imagePreview.src = imageField.value; - Not allowed to load local resource file
-  imagePreview.src = '../photos/1.jpg';
-  showUserModal();
-});
+const showUploadForm = function(){
+  imageField.addEventListener('change', (evt) => {
+    const file = evt.target.files[0];
+    if(file){
+      imagePreview.src = URL.createObjectURL(file);
+      // imagePreview.src = imageField.value; - Not allowed to load local resource file
+      // imagePreview.src = '../photos/1.jpg';
+      showUserModal();
+    }
+  });
+};
 
+export {showUploadForm};

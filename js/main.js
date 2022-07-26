@@ -1,2 +1,2 @@
-import './gallery.js';
-import './upload-form.js';
+import './gallery/gallery.js';
+import './upload-form/upload-form.js';
