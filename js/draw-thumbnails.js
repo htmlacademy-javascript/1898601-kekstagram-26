@@ -21,4 +21,5 @@ const drawThumbnails = function (thumbnails) {
   appendItemsToList(thumbnails, thumbnailsList, makeThumbnailsListItem);
 };
 
+
 export { drawThumbnails };
