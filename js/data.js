@@ -41,7 +41,7 @@ const AVATAR_SETTINGS = {
 };
 
 const PHOTOS_SIZE = 25;
-const MAX_STRING_LENGTH = 140;
+const MAX_DESCRIPTION_LENGTH = 140;
 
 
 const getPictureUrl = function (i) {
@@ -103,4 +103,4 @@ const createPhoto = function (index) {
 };
 
 
-export { MAX_STRING_LENGTH, PHOTOS_SIZE, createPhoto };
+export { MAX_DESCRIPTION_LENGTH, PHOTOS_SIZE, createPhoto };

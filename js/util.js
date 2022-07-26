@@ -15,6 +15,15 @@ const getRandomFromArray = function (array) {
 };
 
 
+const countValueInArray = function (array, value){
+  let count = 0;
+  array.forEach((element) =>{
+    count += element === value ? 1 : 0;
+  });
+  return count;
+};
+
+
 const appendItemsToList = function (elements, elementsList, createListItem) {
   const listItemsFragment = document.createDocumentFragment();
   elements.forEach((element) => {
@@ -27,5 +36,5 @@ const appendItemsToList = function (elements, elementsList, createListItem) {
 
 export {
   getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength, appendItemsToList,
+  , checkStringLength, appendItemsToList, countValueInArray,
 };
