@@ -36,4 +36,4 @@ const addPreviewScaling = function () {
   });
 };
 
-export {addPreviewScaling};
+export { addPreviewScaling };
