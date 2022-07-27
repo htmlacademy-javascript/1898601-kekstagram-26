@@ -1,4 +1,4 @@
-import { isEscapeKey } from '../util';
+import { isEscapeKey } from '../util.js';
 
 const imageForm = document.querySelector('#upload-select-image');
 const imageField = imageForm.querySelector('#upload-file');
