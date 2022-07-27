@@ -3,9 +3,11 @@ const imageField = imageForm.querySelector('#upload-file');
 const imageOverlay = imageForm.querySelector('.img-upload__overlay');
 const imagePreview = imageOverlay.querySelector('.img-upload__preview img');
 const imageOverlayCancel = imageOverlay.querySelector('#upload-cancel');
+const hashtagsInput = document.querySelector('.text__hashtags');
+const commentInput = document.querySelector('.text__description');
 
 
-const closeUserModal = function(){
+const closeUserModal = function () {
   document.body.classList.remove('modal-open');
   imageOverlay.classList.add('hidden');
   document.removeEventListener('keydown', onModalEscKeydown);
@@ -14,7 +16,7 @@ const closeUserModal = function(){
 };
 
 
-const showUserModal = function(){
+const showUserModal = function () {
   document.body.classList.add('modal-open');
   imageOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onModalEscKeydown);
@@ -22,18 +24,20 @@ const showUserModal = function(){
 };
 
 
-function onModalEscKeydown(evt){
-  if(evt.key === 'Escape'){
+function onModalEscKeydown(evt) {
+  if (evt.key === 'Escape') {
     evt.preventDefault();
-    closeUserModal();
+    if(!(evt.target === hashtagsInput || evt.target === commentInput)){
+      closeUserModal();
+    }
   }
 }
 
 
-const showUploadForm = function(){
+const showUploadForm = function () {
   imageField.addEventListener('change', (evt) => {
     const file = evt.target.files[0];
-    if(file){
+    if (file) {
       imagePreview.src = URL.createObjectURL(file);
       // imagePreview.src = imageField.value; - Not allowed to load local resource file
       // imagePreview.src = '../photos/1.jpg';
@@ -42,4 +46,4 @@ const showUploadForm = function(){
   });
 };
 
-export {showUploadForm};
+export { showUploadForm };
