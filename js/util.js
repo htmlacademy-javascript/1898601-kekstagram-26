@@ -9,7 +9,7 @@ const checkStringLength = function (string, maxLength) {
 };
 
 
-const getRandomFromArray = function (array) {
+const getRandomElementFromArray = function (array) {
   const randomIndex = getRandomPositiveInteger(0, array.length - 1);
   return array[randomIndex];
 };
@@ -34,7 +34,12 @@ const appendItemsToList = function (elements, elementsList, createListItem) {
 };
 
 
+const isEscapeKey = function(evt){
+  return evt.key === 'Escape';
+};
+
+
 export {
-  getRandomFromArray, getRandomPositiveInteger
-  , checkStringLength, appendItemsToList, countValueInArray,
+  getRandomElementFromArray, getRandomPositiveInteger
+  , checkStringLength, appendItemsToList, countValueInArray, isEscapeKey,
 };
