@@ -1,3 +1,5 @@
+import { isEscapeKey } from '../util.js';
+
 const imageForm = document.querySelector('#upload-select-image');
 const imageField = imageForm.querySelector('#upload-file');
 const imageOverlay = imageForm.querySelector('.img-upload__overlay');
@@ -25,7 +27,7 @@ const showUserModal = function () {
 
 
 function onModalEscKeydown(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (!(evt.target === hashtagsInput || evt.target === commentInput)) {
       closeUserModal();
@@ -39,8 +41,6 @@ const showUploadForm = function () {
     const file = evt.target.files[0];
     if (file) {
       imagePreview.src = URL.createObjectURL(file);
-      // imagePreview.src = imageField.value; - Not allowed to load local resource file
-      // imagePreview.src = '../photos/1.jpg';
       showUserModal();
     }
   });

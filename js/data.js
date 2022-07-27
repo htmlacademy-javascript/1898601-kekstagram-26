@@ -1,5 +1,5 @@
 import {
-  getRandomFromArray, getRandomPositiveInteger,
+  getRandomElementFromArray, getRandomPositiveInteger,
 } from './util.js';
 
 const COMMENT_MESSAGES = [
@@ -74,7 +74,7 @@ const getCommentAvatar = function (begin, end) {
 
 
 const getCommentMessage = function () {
-  const commentMessage = getRandomFromArray(COMMENT_MESSAGES);
+  const commentMessage = getRandomElementFromArray(COMMENT_MESSAGES);
   return commentMessage;
 };
 
@@ -84,7 +84,7 @@ const createComment = function () {
     id: generateCommentId(),
     avatar: getCommentAvatar(AVATAR_SETTINGS.MIN_VALUE, AVATAR_SETTINGS.MAX_VALUE),
     message: getCommentMessage(),
-    name: getRandomFromArray(COMMENT_NAMES),
+    name: getRandomElementFromArray(COMMENT_NAMES),
   };
   return comment;
 };
@@ -94,7 +94,7 @@ const createPhoto = function (index) {
   const photo = {
     id: index + 1,
     url: getPictureUrl(index + 1),
-    description: getRandomFromArray(PICTURE_DESCRIPTIONS),
+    description: getRandomElementFromArray(PICTURE_DESCRIPTIONS),
     likes: getRandomPositiveInteger(LIKES_SETTINGS.MIN_COUNT, LIKES_SETTINGS.MAX_COUNT),
     comments: Array.from({ length: getRandomPositiveInteger(COMMENT_SETTINGS.MIN_COUNT, COMMENT_SETTINGS.MAX_COUNT) }
       , createComment),

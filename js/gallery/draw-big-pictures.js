@@ -1,4 +1,4 @@
-import { appendItemsToList } from '../util.js';
+import { appendItemsToList, isEscapeKey } from '../util.js';
 const bigPictureElement = document.querySelector('.big-picture');
 const commentsList = bigPictureElement.querySelector('.social__comments');
 const commentsListItem = commentsList.querySelector('.social__comment');
@@ -14,7 +14,7 @@ const closeBigPicture = function () {
 
 
 function onBigPictureEscKeyDown(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }

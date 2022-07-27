@@ -35,7 +35,7 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'p',
   errorTextClass: 'form__error'
-}, false);
+});
 
 
 pristine.addValidator(formHashtags, validateHashtags, 'Неверный формат хэштегов.');
