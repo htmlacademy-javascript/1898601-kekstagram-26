@@ -30,7 +30,7 @@ const LIKES_SETTINGS = {
 
 const COMMENT_SETTINGS = {
   MIN_COUNT: 0,
-  MAX_COUNT: 5,
+  MAX_COUNT: 22,
   MIN_ID: 0,
   MAX_ID: 1000,
 };

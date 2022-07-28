@@ -15,16 +15,16 @@ const getRandomElementFromArray = function (array) {
 };
 
 
-const countValueInArray = function (array, value){
+const countValueInArray = function (array, value) {
   let count = 0;
-  array.forEach((element) =>{
+  array.forEach((element) => {
     count += element === value ? 1 : 0;
   });
   return count;
 };
 
 
-const appendItemsToList = function (elements, elementsList, createListItem) {
+const appendElementsToList = function (elements, elementsList, createListItem) {
   const listItemsFragment = document.createDocumentFragment();
   elements.forEach((element) => {
     const listItem = createListItem(element);
@@ -34,12 +34,33 @@ const appendItemsToList = function (elements, elementsList, createListItem) {
 };
 
 
-const isEscapeKey = function(evt){
+const appendNElementsToList = function (elements, elementsList, createListItem, step) {
+  let elementsBegin = 0;
+  let elementsEnd = Math.min(elements.length, step);
+  return function () {
+    if (elementsBegin < elements.length) {
+      const elementsPart = elements.slice(elementsBegin, elementsEnd);
+      elementsBegin += step;
+      elementsEnd += step;
+      appendElementsToList(elementsPart, elementsList, createListItem);
+    }
+
+  };
+};
+
+
+const isEscapeKey = function (evt) {
   return evt.key === 'Escape';
+};
+
+
+const transformScaleElement = function (element, value) {
+  element.style.transform = `scale(${value})`;
 };
 
 
 export {
   getRandomElementFromArray, getRandomPositiveInteger
-  , checkStringLength, appendItemsToList, countValueInArray, isEscapeKey,
+  , checkStringLength, appendElementsToList, countValueInArray,
+  isEscapeKey, appendNElementsToList, transformScaleElement,
 };
