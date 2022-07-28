@@ -5,6 +5,7 @@ const commentsListItem = commentsList.querySelector('.social__comment');
 const bigPictureCancel = bigPictureElement.querySelector('.big-picture__cancel');
 const commentsLoader = bigPictureElement.querySelector('.comments-loader');
 const commentInput = bigPictureElement.querySelector('.social__footer-text');
+
 const COMMENTS_ADD_STEP = 5;
 
 

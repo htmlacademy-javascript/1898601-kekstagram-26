@@ -54,8 +54,13 @@ const isEscapeKey = function (evt) {
 };
 
 
+const transformScaleElement = function (element, value) {
+  element.style.transform = `scale(${value})`;
+};
+
+
 export {
   getRandomElementFromArray, getRandomPositiveInteger
   , checkStringLength, appendElementsToList, countValueInArray,
-  isEscapeKey, appendNElementsToList,
+  isEscapeKey, appendNElementsToList, transformScaleElement,
 };

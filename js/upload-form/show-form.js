@@ -1,4 +1,5 @@
 import { isEscapeKey } from '../util.js';
+import { addPreviewScaling, removePreviewScaling } from './scale-form-image.js';
 
 const imageForm = document.querySelector('#upload-select-image');
 const imageField = imageForm.querySelector('#upload-file');
@@ -12,6 +13,7 @@ const commentInput = document.querySelector('.text__description');
 const closeUserModal = function () {
   document.body.classList.remove('modal-open');
   imageOverlay.classList.add('hidden');
+  removePreviewScaling();
   document.removeEventListener('keydown', onModalEscKeydown);
   imageOverlayCancel.removeEventListener('click', closeUserModal);
   imageField.value = '';
@@ -21,6 +23,7 @@ const closeUserModal = function () {
 const showUserModal = function () {
   document.body.classList.add('modal-open');
   imageOverlay.classList.remove('hidden');
+  addPreviewScaling();
   document.addEventListener('keydown', onModalEscKeydown);
   imageOverlayCancel.addEventListener('click', closeUserModal);
 };
@@ -36,14 +39,10 @@ function onModalEscKeydown(evt) {
 }
 
 
-const showUploadForm = function () {
-  imageField.addEventListener('change', (evt) => {
-    const file = evt.target.files[0];
-    if (file) {
-      imagePreview.src = URL.createObjectURL(file);
-      showUserModal();
-    }
-  });
-};
-
-export { showUploadForm };
+imageField.addEventListener('change', (evt) => {
+  const file = evt.target.files[0];
+  if (file) {
+    imagePreview.src = URL.createObjectURL(file);
+    showUserModal();
+  }
+});
