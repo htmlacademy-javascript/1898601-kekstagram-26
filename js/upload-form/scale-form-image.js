@@ -1,13 +1,14 @@
 import { transformScaleElement } from '../util.js';
-const controlScale = document.querySelector('.img-upload__scale');
-const controlField = document.querySelector('.scale__control--value');
-const imagePreview = document.querySelector('.img-upload__preview img');
 
 const IMAGE_SCALING = {
   MIN: 25,
   MAX: 100,
   STEP: 25,
 };
+
+const controlScale = document.querySelector('.img-upload__scale');
+const controlField = document.querySelector('.scale__control--value');
+const imagePreview = document.querySelector('.img-upload__preview img');
 
 
 const scaleImage = (evt) => {

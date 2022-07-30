@@ -59,8 +59,17 @@ const transformScaleElement = function (element, value) {
 };
 
 
+const changeElementClass = function (element, previousClass, newClass) {
+  if (previousClass !== newClass) {
+    element.classList.remove(previousClass);
+    element.classList.add(newClass);
+  }
+};
+
+
 export {
   getRandomElementFromArray, getRandomPositiveInteger
   , checkStringLength, appendElementsToList, countValueInArray,
-  isEscapeKey, appendNElementsToList, transformScaleElement,
+  isEscapeKey, appendNElementsToList, transformScaleElement
+  , changeElementClass,
 };
