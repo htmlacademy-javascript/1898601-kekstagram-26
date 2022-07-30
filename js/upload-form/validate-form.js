@@ -1,11 +1,11 @@
 import { countValueInArray, checkStringLength } from '../util.js';
 import { MAX_DESCRIPTION_LENGTH } from '../data.js';
 
+const HASHTAG_RE = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
 const form = document.querySelector('#upload-select-image');
 const formHashtags = form.querySelector('.text__hashtags');
 const formComment = form.querySelector('.text__description');
-
-const HASHTAG_RE = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 
 const validateHashtags = function (value) {
