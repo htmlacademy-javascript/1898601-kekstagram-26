@@ -11,6 +11,12 @@ const controlField = document.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
 
+const scalePreviewImage = function(scaleValue){
+  controlField.value = `${scaleValue}%`;
+  transformScaleElement(imagePreview, scaleValue / 100);
+};
+
+
 const scaleImage = (evt) => {
   const targetElement = evt.target;
   const controlValue = parseInt(controlField.value, 10);
@@ -18,15 +24,13 @@ const scaleImage = (evt) => {
   if (targetElement.classList.contains('scale__control--smaller')) {
     if (controlValue > IMAGE_SCALING.MIN) {
       const newValue = controlValue - IMAGE_SCALING.STEP;
-      controlField.value = `${newValue}%`;
-      transformScaleElement(imagePreview, newValue / 100);
+      scalePreviewImage(newValue);
     }
   }
   else if (targetElement.classList.contains('scale__control--bigger')) {
     if (controlValue < IMAGE_SCALING.MAX) {
       const newValue = controlValue + IMAGE_SCALING.STEP;
-      controlField.value = `${newValue}%`;
-      transformScaleElement(imagePreview, newValue / 100);
+      scalePreviewImage(newValue);
     }
   }
 };
@@ -39,6 +43,7 @@ const addPreviewScaling = function () {
 
 const removePreviewScaling = function () {
   controlScale.removeEventListener('click', scaleImage);
+  scalePreviewImage(100);
 };
 
 
