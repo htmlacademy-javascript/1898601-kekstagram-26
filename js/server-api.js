@@ -4,7 +4,7 @@ const getData = function (onSuccess, onFail) {
     .then((data) => {
       onSuccess(data);
     })
-    .catch((err) =>{
+    .catch((err) => {
       onFail(`${err.message}. Попробуйте обновить страницу.`, 5000);
     });
 };

@@ -77,9 +77,27 @@ const showErrorMessage = function (message, duration) {
 };
 
 
-const changeCheckedItem = function(prevChecked, newChecked){
+const changeCheckedItem = function (prevChecked, newChecked) {
   prevChecked.checked = false;
   newChecked.checked = true;
+};
+
+
+function debounce(callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+
+const getNRandomElementsFromArray = function (array, count) {
+  return array
+    .slice()
+    .sort(() => Math.random() - Math.random())
+    .slice(0, count);
 };
 
 
@@ -87,4 +105,5 @@ export {
   checkStringLength, appendElementsToList, countValueInArray,
   isEscapeKey, appendNElementsToList, transformScaleElement,
   changeElementClass, showErrorMessage, changeCheckedItem,
+  debounce, getNRandomElementsFromArray,
 };
