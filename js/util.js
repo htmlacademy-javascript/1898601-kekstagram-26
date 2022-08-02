@@ -1,17 +1,5 @@
-const getRandomPositiveInteger = function (begin, end) {
-  [begin, end] = [Math.min(begin, end), Math.max(begin, end)];
-  return begin + Math.floor(Math.random() * (end - begin + 1));
-};
-
-
 const checkStringLength = function (string, maxLength) {
   return string.length <= maxLength;
-};
-
-
-const getRandomElementFromArray = function (array) {
-  const randomIndex = getRandomPositiveInteger(0, array.length - 1);
-  return array[randomIndex];
 };
 
 
@@ -67,9 +55,36 @@ const changeElementClass = function (element, previousClass, newClass) {
 };
 
 
+const showErrorMessage = function (message, duration) {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '8px 2px';
+  alertContainer.style.fontSize = '16px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, duration);
+};
+
+
+const changeCheckedItem = function(prevChecked, newChecked){
+  prevChecked.checked = false;
+  newChecked.checked = true;
+};
+
+
 export {
-  getRandomElementFromArray, getRandomPositiveInteger
-  , checkStringLength, appendElementsToList, countValueInArray,
-  isEscapeKey, appendNElementsToList, transformScaleElement
-  , changeElementClass,
+  checkStringLength, appendElementsToList, countValueInArray,
+  isEscapeKey, appendNElementsToList, transformScaleElement,
+  changeElementClass, showErrorMessage, changeCheckedItem,
 };

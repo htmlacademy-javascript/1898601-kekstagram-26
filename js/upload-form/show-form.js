@@ -1,5 +1,7 @@
 import { isEscapeKey } from '../util.js';
 import { addPreviewScaling, removePreviewScaling } from './scale-form-image.js';
+import { removePictureEffect } from './filter-image.js';
+import { pristine } from './validate-form.js';
 
 const imageForm = document.querySelector('#upload-select-image');
 const imageField = imageForm.querySelector('#upload-file');
@@ -10,22 +12,37 @@ const hashtagsInput = document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
 
 
-const closeUserModal = function () {
-  document.body.classList.remove('modal-open');
-  imageOverlay.classList.add('hidden');
-  removePreviewScaling();
-  document.removeEventListener('keydown', onModalEscKeydown);
-  imageOverlayCancel.removeEventListener('click', closeUserModal);
+const restoreFormDefault = function () {
   imageField.value = '';
+  imagePreview.src = 'img/upload-default-image.jpg';
+  removePreviewScaling();
+  removePictureEffect();
+  hashtagsInput.value = '';
+  commentInput.value = '';
+  pristine.validate();
 };
 
 
-const showUserModal = function () {
+const hideUserForm = function () {
+  document.body.classList.remove('modal-open');
+  imageOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', onModalEscKeydown);
+  imageOverlayCancel.removeEventListener('click', closeUserForm);
+};
+
+
+function closeUserForm() {
+  hideUserForm();
+  restoreFormDefault();
+}
+
+
+const showUserForm = function () {
   document.body.classList.add('modal-open');
   imageOverlay.classList.remove('hidden');
   addPreviewScaling();
   document.addEventListener('keydown', onModalEscKeydown);
-  imageOverlayCancel.addEventListener('click', closeUserModal);
+  imageOverlayCancel.addEventListener('click', closeUserForm);
 };
 
 
@@ -33,7 +50,7 @@ function onModalEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (!(evt.target === hashtagsInput || evt.target === commentInput)) {
-      closeUserModal();
+      closeUserForm();
     }
   }
 }
@@ -43,6 +60,9 @@ imageField.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
   if (file) {
     imagePreview.src = URL.createObjectURL(file);
-    showUserModal();
+    showUserForm();
   }
 });
+
+
+export { closeUserForm, showUserForm };
