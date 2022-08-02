@@ -3,6 +3,8 @@ import { addPreviewScaling, removePreviewScaling } from './scale-form-image.js';
 import { removePictureEffect } from './filter-image.js';
 import { pristine } from './validate-form.js';
 
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
 const imageForm = document.querySelector('#upload-select-image');
 const imageField = imageForm.querySelector('#upload-file');
 const imageOverlay = imageForm.querySelector('.img-upload__overlay');
@@ -59,8 +61,12 @@ function onModalEscKeydown(evt) {
 imageField.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
   if (file) {
-    imagePreview.src = URL.createObjectURL(file);
-    showUserForm();
+    const fileName = file.name.toLowerCase();
+    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    if (matches) {
+      imagePreview.src = URL.createObjectURL(file);
+      showUserForm();
+    }
   }
 });
 
