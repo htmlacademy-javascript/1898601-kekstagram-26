@@ -1,6 +1,7 @@
 import { appendNElementsToList, isEscapeKey } from '../util.js';
 
 const COMMENTS_ADD_STEP = 5;
+
 const bigPictureElement = document.querySelector('.big-picture');
 const commentsList = bigPictureElement.querySelector('.social__comments');
 const commentsListItem = commentsList.querySelector('.social__comment');
