@@ -118,4 +118,5 @@ sliderElement.noUiSlider.on('update', () => {
   updatePictureEffectValue(imagePreview, effectLevelElement.value);
 });
 
+
 export { removePictureEffect };

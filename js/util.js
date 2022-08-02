@@ -1,17 +1,5 @@
-const getRandomPositiveInteger = function (begin, end) {
-  [begin, end] = [Math.min(begin, end), Math.max(begin, end)];
-  return begin + Math.floor(Math.random() * (end - begin + 1));
-};
-
-
 const checkStringLength = function (string, maxLength) {
   return string.length <= maxLength;
-};
-
-
-const getRandomElementFromArray = function (array) {
-  const randomIndex = getRandomPositiveInteger(0, array.length - 1);
-  return array[randomIndex];
 };
 
 
@@ -96,7 +84,6 @@ const changeCheckedItem = function(prevChecked, newChecked){
 
 
 export {
-  getRandomElementFromArray, getRandomPositiveInteger,
   checkStringLength, appendElementsToList, countValueInArray,
   isEscapeKey, appendNElementsToList, transformScaleElement,
   changeElementClass, showErrorMessage, changeCheckedItem,

@@ -23,23 +23,26 @@ const restoreFormDefault = function () {
 };
 
 
-const closeUserModal = function () {
+const hideUserForm = function () {
   document.body.classList.remove('modal-open');
   imageOverlay.classList.add('hidden');
-
-  restoreFormDefault();
-
   document.removeEventListener('keydown', onModalEscKeydown);
-  imageOverlayCancel.removeEventListener('click', closeUserModal);
+  imageOverlayCancel.removeEventListener('click', closeUserForm);
 };
 
 
-const showUserModal = function () {
+function closeUserForm() {
+  hideUserForm();
+  restoreFormDefault();
+}
+
+
+const showUserForm = function () {
   document.body.classList.add('modal-open');
   imageOverlay.classList.remove('hidden');
   addPreviewScaling();
   document.addEventListener('keydown', onModalEscKeydown);
-  imageOverlayCancel.addEventListener('click', closeUserModal);
+  imageOverlayCancel.addEventListener('click', closeUserForm);
 };
 
 
@@ -47,7 +50,7 @@ function onModalEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (!(evt.target === hashtagsInput || evt.target === commentInput)) {
-      closeUserModal();
+      closeUserForm();
     }
   }
 }
@@ -57,9 +60,9 @@ imageField.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
   if (file) {
     imagePreview.src = URL.createObjectURL(file);
-    showUserModal();
+    showUserForm();
   }
 });
 
 
-export { closeUserModal };
+export { closeUserForm, showUserForm };

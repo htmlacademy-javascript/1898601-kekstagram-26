@@ -11,7 +11,7 @@ const controlField = document.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
 
-const scalePreviewImage = function(scaleValue){
+const scalePreviewImage = function (scaleValue) {
   controlField.value = `${scaleValue}%`;
   transformScaleElement(imagePreview, scaleValue / 100);
 };
