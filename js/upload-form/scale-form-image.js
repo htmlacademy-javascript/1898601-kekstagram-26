@@ -1,6 +1,6 @@
 import { transformScaleElement } from '../util.js';
 
-const IMAGE_SCALING = {
+const ImageScaling = {
   MIN: 25,
   MAX: 100,
   STEP: 25,
@@ -22,14 +22,14 @@ const scaleImage = (evt) => {
   const controlValue = parseInt(controlField.value, 10);
 
   if (targetElement.classList.contains('scale__control--smaller')) {
-    if (controlValue > IMAGE_SCALING.MIN) {
-      const newValue = controlValue - IMAGE_SCALING.STEP;
+    if (controlValue > ImageScaling.MIN) {
+      const newValue = controlValue - ImageScaling.STEP;
       scalePreviewImage(newValue);
     }
   }
   else if (targetElement.classList.contains('scale__control--bigger')) {
-    if (controlValue < IMAGE_SCALING.MAX) {
-      const newValue = controlValue + IMAGE_SCALING.STEP;
+    if (controlValue < ImageScaling.MAX) {
+      const newValue = controlValue + ImageScaling.STEP;
       scalePreviewImage(newValue);
     }
   }

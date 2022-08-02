@@ -1,6 +1,6 @@
 import { changeElementClass, changeCheckedItem } from '../util.js';
 
-const FILTER_CLASSES = {
+const FilterClasses = {
   ORIGINAL: 'effects__preview--none',
   CHROME: 'effects__preview--chrome',
   SEPIA: 'effects__preview--sepia',
@@ -21,13 +21,13 @@ const createSliderSetting = function (MIN, MAX, STEP, EFFECT, UNITS) {
 };
 
 
-const SLIDER_SETTINGS = {
-  [FILTER_CLASSES.ORIGINAL]: createSliderSetting('', '', '', ''),
-  [FILTER_CLASSES.CHROME]: createSliderSetting(0, 1, 0.1, 'grayscale'),
-  [FILTER_CLASSES.SEPIA]: createSliderSetting(0, 1, 0.1, 'sepia'),
-  [FILTER_CLASSES.MARVIN]: createSliderSetting(0, 100, 1, 'invert', '%'),
-  [FILTER_CLASSES.PHOBOS]: createSliderSetting(0, 3, 0.1, 'blur', 'px'),
-  [FILTER_CLASSES.HEAT]: createSliderSetting(1, 3, 0.1, 'brightness'),
+const SliderSettings = {
+  [FilterClasses.ORIGINAL]: createSliderSetting('', '', '', ''),
+  [FilterClasses.CHROME]: createSliderSetting(0, 1, 0.1, 'grayscale'),
+  [FilterClasses.SEPIA]: createSliderSetting(0, 1, 0.1, 'sepia'),
+  [FilterClasses.MARVIN]: createSliderSetting(0, 100, 1, 'invert', '%'),
+  [FilterClasses.PHOBOS]: createSliderSetting(0, 3, 0.1, 'blur', 'px'),
+  [FilterClasses.HEAT]: createSliderSetting(1, 3, 0.1, 'brightness'),
 };
 
 const effectsList = document.querySelector('.effects__list');
@@ -40,7 +40,7 @@ const originalEffect = effectsList.querySelector('#effect-none');
 
 const removePictureEffect = function () {
   const imageClass = imagePreview.classList[0];
-  changeElementClass(imagePreview, imageClass, FILTER_CLASSES.ORIGINAL);
+  changeElementClass(imagePreview, imageClass, FilterClasses.ORIGINAL);
   const checkedEffect = effectsList.querySelector('.effects__radio:checked');
   changeCheckedItem(checkedEffect, originalEffect);
   sliderWrapper.classList.add('hidden');
@@ -57,12 +57,12 @@ const setPictureEffect = function (effectClass) {
   sliderWrapper.classList.remove('hidden');
   sliderElement.noUiSlider.updateOptions({
     range: {
-      min: SLIDER_SETTINGS[effectClass].MIN,
-      max: SLIDER_SETTINGS[effectClass].MAX,
+      min: SliderSettings[effectClass].MIN,
+      max: SliderSettings[effectClass].MAX,
     },
-    step: SLIDER_SETTINGS[effectClass].STEP,
+    step: SliderSettings[effectClass].STEP,
   });
-  sliderElement.noUiSlider.set(SLIDER_SETTINGS[effectClass].MAX);
+  sliderElement.noUiSlider.set(SliderSettings[effectClass].MAX);
 };
 
 
@@ -87,14 +87,14 @@ const getEffectClass = function (effectElement) {
 const updatePictureEffectValue = function (image, effectLevel) {
   const checkedEffect = effectsList.querySelector('.effects__radio:checked');
   const effectClass = getEffectClass(checkedEffect.closest('.effects__item'));
-  const effectFilter = SLIDER_SETTINGS[effectClass].EFFECT;
-  const effectUnits = SLIDER_SETTINGS[effectClass].UNITS || '';
+  const effectFilter = SliderSettings[effectClass].EFFECT;
+  const effectUnits = SliderSettings[effectClass].UNITS || '';
   image.style.filter = `${effectFilter}(${effectLevel}${effectUnits})`;
 };
 
 
 const updatePictureEffect = function (effectClass) {
-  if (effectClass === FILTER_CLASSES.ORIGINAL) {
+  if (effectClass === FilterClasses.ORIGINAL) {
     removePictureEffect();
   }
   else {
